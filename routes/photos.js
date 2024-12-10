@@ -15,35 +15,26 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-    console.log(req.params);
-    const {id} = req.params
-    const photosFile = fs.readFileSync("./data/photos.json");
-	const photosParsing = JSON.parse(photosFile); 
-    const individualPhoto = photos.find((photo)) => photo
-}
+	console.log(req.params);
+	const { id } = req.params;
+	const photos = photosArray();
+	const individualPhoto = photos.find((photo) => photo.id === id);
 
-router.get('/:id' ,(request, response) => {
-    console.log(request.params);
-    const { id } = request.params
+	if (!individualPhoto) {
+		return res.status(404).send("Photo not found");
+	}
 
-    // reading file from file system 
-    const shoesFile = fs.readFileSync('./data/shoes.json');
-    const shoes = JSON.parse(shoesFile);
+	const filteredPhoto = {
+		id: individualPhoto.id,
+		photo: individualPhoto.photo,
+		photoDescription: individualPhoto.photoDescription,
+		photographer: individualPhoto.photographer,
+		likes: individualPhoto.likes,
+		timestamp: individualPhoto.timestamp,
+		tags: individualPhoto.tags,
+	};
 
-    const individualShoe = shoes.find((shoe) => shoe.id === id);
-
-    if(!individualShoe) {
-        response.status(404).send('shoe not found')
-        return;
-    }
-
-
-    response.json(individualShoe)
-})
-
-
-
-
-
+	res.json(filteredPhoto);
+});
 
 export default router;
