@@ -14,4 +14,6 @@ router.get("/", (req, res) => {
 	res.json(photos);
 });
 
+router.get("/");
+
 export default router;
