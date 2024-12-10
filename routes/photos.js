@@ -60,4 +60,6 @@ router.get("/:id/comments", (req, res) => {
 	res.json(filteredComments); //calling the filteredComment which will show up when the response is sent upon the API end point being called.
 });
 
+router.post("/:id/comments"), (req, res) => {};
+
 export default router;
