@@ -6,11 +6,12 @@ import cors from "cors";
 import photosRouter from "./routes/photos.js";
 import tagsRouter from "./routes/tags.js";
 const PORT = process.env.PORT || 8080;
-
+import path from "path";
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
 app.listen(PORT, () => {
 	console.log(`Server is running at port ${PORT}`);
 });
